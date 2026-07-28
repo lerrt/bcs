@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BCS Hub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Countdown</title>
 </head>
 <body>
-  <div>
-    <h1>WIP</h1>
-  </div>
+
+<div class="countdown-container">
+    <h2>BCS 2026 - Countdown to Graduation</h2>
+    <div class="timer">
+        <div class="time-box"><div id="days">00</div><span>Days</span></div>
+        <div class="time-box"><div id="hours">00</div><span>Hours</span></div>
+        <div class="time-box"><div id="minutes">00</div><span>Minutes</span></div>
+        <div class="time-box"><div id="seconds">00</div><span>Seconds</span></div>
+    </div>
+</div>
+
+<script>
+    const targetDate == new Date("2027-12-31T23:59:59").getTime();
+    const interval = setInterval(function() {
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+        document.getElementByID("hours").innerText = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+        if (difference < 0) {
+            clearInterva(interval);
+            document.querySelector(".timer").innerHTML = "<h3>Today's the day!</h3>";
+        }
+    }, 1000);
+</script>
+
 </body>
 </html>
